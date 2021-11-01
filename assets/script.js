@@ -1,9 +1,9 @@
 // object containing all the character types the user may choose to include in the password
 var charSets = {
-    integer: Array.from("0123456789"),
-    lowercase: Array.from("qwertyuiopasdfghjklzxcvbnm"),
-    uppercase: Array.from("QWERTYUIOPASDFGHJKLZXCVBNM"),
-    special: Array.from("~!@#$%^&*()_+{}|:\"<>?`-=[]\\;',./"), // use backslash \ to escape the tricky characters
+    integer: "0123456789",
+    lowercase: "qwertyuiopasdfghjklzxcvbnm",
+    uppercase: "QWERTYUIOPASDFGHJKLZXCVBNM",
+    special: "~!@#$%^&*()_+{}|:\"<>?`-=[]\\;',./", // use backslash \ to escape the tricky characters
 };
 
 // generator
@@ -24,8 +24,8 @@ function generatePassword() {
 
     // otherwise, continue with the function
 
-    // character sets array
-    var passwordChars = [];
+    // character sets
+    var passwordChars = "";
     // for now let's just use all the character sets
     passwordChars = passwordChars.concat(
         charSets.integer,
@@ -37,7 +37,7 @@ function generatePassword() {
     // start building the output, one character at a time
     var passwordOutput = "";
     for (var i = 0; i < passwordLength; i++) {
-        // randomly select an index in the passwordChars array
+        // randomly select an index in the passwordChars
         var randomIndex = Math.floor(Math.random() * passwordChars.length);
         // then concat that to the output string
         passwordOutput += passwordChars[randomIndex];
