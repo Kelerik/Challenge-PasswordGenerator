@@ -18,17 +18,18 @@ function generatePassword() {
     // if not within range, alert the user
     if (8 > passwordLength || passwordLength > 128) {
         window.alert("Invalid entry. Please try again.");
-        // returning an empty string will not modify the password <textarea>
+        // returning an empty string will reset the password <textarea> to default placeholder
         return "";
     }
 
     // otherwise, continue with the function
 
-    // character sets. start empty
+    // available characters to use. start empty
     var passwordChars = "";
 
     // prompt user for each of character set
     // if user clicks OK, it returns true
+    // concat the character set to the variable so it can be used later
     if (
         window.confirm(
             "Include NUMBERS in the password?\n\nexample: " + charSets.integer
@@ -61,6 +62,7 @@ function generatePassword() {
         passwordChars += charSets.special;
     }
 
+    // at least one character set must be selected
     // if user cancels all the prompts, the passwordChars string remains blank
     // notify the user then cancel the operation
     if (passwordChars == "") {
@@ -70,9 +72,12 @@ function generatePassword() {
         return "";
     }
 
-    // start building the output, one character at a time
+    // if we made it this far,
+    // the user should have entered a valid password length and selected at least one of the character sets
+
+    // start building the output, one character at a time until it reaches the desired length
     var passwordOutput = "";
-    for (var i = 0; i < passwordLength; i++) {
+    while (passwordOutput.length < passwordLength) {
         // randomly select an index in the passwordChars
         var randomIndex = Math.floor(Math.random() * passwordChars.length);
         // then concat that to the output string
