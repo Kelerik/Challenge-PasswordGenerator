@@ -1,8 +1,8 @@
 // object containing all the character types the user may choose to include in the password
 var charSets = {
     integer: "0123456789",
-    lowercase: "qwertyuiopasdfghjklzxcvbnm",
-    uppercase: "QWERTYUIOPASDFGHJKLZXCVBNM",
+    lowercase: "abcdefghijklmnopqrstuvwxyz",
+    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     special: "~!@#$%^&*()_+{}|:\"<>?`-=[]\\;',./ ", // use backslash \ to escape the tricky characters
 };
 
@@ -29,16 +29,35 @@ function generatePassword() {
 
     // prompt user for each of character set
     // if user clicks OK, it returns true
-    if (window.confirm("Include NUMBERS in the password?") == true) {
+    if (
+        window.confirm(
+            "Include NUMBERS in the password?\n\nexample: " + charSets.integer
+        )
+    ) {
         passwordChars += charSets.integer;
     }
-    if (window.confirm("Include LOWERCASE letters in the password?")) {
+    if (
+        window.confirm(
+            "Include LOWERCASE letters in the password?\n\nexample: " +
+                charSets.lowercase
+        )
+    ) {
         passwordChars += charSets.lowercase;
     }
-    if (window.confirm("Include UPPERCASE letters in the password?")) {
+    if (
+        window.confirm(
+            "Include UPPERCASE letters in the password?\n\nexample: " +
+                charSets.uppercase
+        )
+    ) {
         passwordChars += charSets.uppercase;
     }
-    if (window.confirm("Include SPECIAL characters in the password?")) {
+    if (
+        window.confirm(
+            "Include SPECIAL characters in the password?\n\nexample: " +
+                charSets.special
+        )
+    ) {
         passwordChars += charSets.special;
     }
 
