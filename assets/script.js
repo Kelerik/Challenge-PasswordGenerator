@@ -3,7 +3,7 @@ var charSets = {
     integer: "0123456789",
     lowercase: "qwertyuiopasdfghjklzxcvbnm",
     uppercase: "QWERTYUIOPASDFGHJKLZXCVBNM",
-    special: "~!@#$%^&*()_+{}|:\"<>?`-=[]\\;',./", // use backslash \ to escape the tricky characters
+    special: "~!@#$%^&*()_+{}|:\"<>?`-=[]\\;',./ ", // use backslash \ to escape the tricky characters
 };
 
 // generator
@@ -24,15 +24,32 @@ function generatePassword() {
 
     // otherwise, continue with the function
 
-    // character sets
+    // character sets. start empty
     var passwordChars = "";
-    // for now let's just use all the character sets
-    passwordChars = passwordChars.concat(
-        charSets.integer,
-        charSets.lowercase,
-        charSets.uppercase,
-        charSets.special
-    );
+
+    // prompt user for each of character set
+    // if user clicks OK, it returns true
+    if (window.confirm("Include NUMBERS in the password?") == true) {
+        passwordChars += charSets.integer;
+    }
+    if (window.confirm("Include LOWERCASE letters in the password?")) {
+        passwordChars += charSets.lowercase;
+    }
+    if (window.confirm("Include UPPERCASE letters in the password?")) {
+        passwordChars += charSets.uppercase;
+    }
+    if (window.confirm("Include SPECIAL characters in the password?")) {
+        passwordChars += charSets.special;
+    }
+
+    // if user cancels all the prompts, the passwordChars string remains blank
+    // notify the user then cancel the operation
+    if (passwordChars == "") {
+        window.alert(
+            "You haven't selected any of the options. Please try again."
+        );
+        return "";
+    }
 
     // start building the output, one character at a time
     var passwordOutput = "";
