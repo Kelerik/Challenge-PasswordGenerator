@@ -15,7 +15,7 @@ function generatePassword() {
 
     // validate password length. must be a number and within a specified range
     // note that isNaN() has limitations. fortunately they don't apply here
-    if (isNaN(passwordLength || 8 > passwordLength || passwordLength > 128)) {
+    if (isNaN(passwordLength) || 8 > passwordLength || passwordLength > 128) {
         // if invalid, alert the user
         window.alert("Invalid entry. Please try again.");
         // returning an empty string will reset the password <textarea> to default placeholder
