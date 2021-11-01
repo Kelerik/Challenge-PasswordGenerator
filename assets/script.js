@@ -13,10 +13,10 @@ function generatePassword() {
         "Enter the length of the password. Must be a number from 8 to 128."
     );
 
-    // validate password length. must be within a specified range
-    // don't need to check if the argument contains non-integers because they will make the condition false anyway
-    // if not within range, alert the user
-    if (8 > passwordLength || passwordLength > 128) {
+    // validate password length. must be a number and within a specified range
+    // note that isNaN() has limitations. fortunately they don't apply here
+    if (isNaN(passwordLength || 8 > passwordLength || passwordLength > 128)) {
+        // if invalid, alert the user
         window.alert("Invalid entry. Please try again.");
         // returning an empty string will reset the password <textarea> to default placeholder
         return "";
